@@ -59,11 +59,11 @@ pip install -r requirements.txt
 ```
 4. Generate your local explicit configuration properties out of the distributed global template:
 ```bash
-# Windows
+# On Windows (PowerShell) or macOS/Linux
 cp .env.example .env
 
-# macOS / Linux
-cp .env.example .env
+# On Windows (Command Prompt / CMD)
+copy .env.example .env
 ```
 Note : Populate the generated ```.env``` file with functional targeted portal account credentials if customized baseline validation paths are preferred.
 
