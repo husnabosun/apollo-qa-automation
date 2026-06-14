@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 def get_driver():
+    # headless chrome webdriver instance factory for test automation
     options = Options()
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")

@@ -12,14 +12,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from utils.driver import get_driver
 
+# load variables from local .env file
 load_dotenv()
 
 BASE_URL = os.getenv("BASE_URL" , "https://practicesoftwaretesting.com")
 
 def test_register_success(driver):
+    # define a 20 sec of wait until elements are loaded
     wait = WebDriverWait(driver, 20)
 
     try:
+        # creates a unique email adress to register each time succesfully
         unique_email = f"testuser_{uuid.uuid4().hex[:8]}@example.com"
         
         print("Navigating to home page...")
@@ -76,6 +79,7 @@ def test_register_success(driver):
         print("Registration successful! Redirected to login page.")
 
     except Exception as e:
+        # when an exception is thrown, it is documented with a screenshot
         os.makedirs("screenshots", exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         driver.save_screenshot(f"screenshots/test_register_fail_{timestamp}.png")

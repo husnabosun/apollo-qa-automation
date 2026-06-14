@@ -5,12 +5,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# load variables from local .env file
 load_dotenv()
 
+# a default url also added in case of a failure in reading of .env
 BASE_URL = os.getenv("BASE_URL", "https://practicesoftwaretesting.com")
 
 
 def test_login_invalid_credentials(driver):
+    # define a 20 sec of wait until elements are loaded
     wait = WebDriverWait(driver, 20)
 
     try:
@@ -33,6 +36,7 @@ def test_login_invalid_credentials(driver):
         print("Invalid login correctly rejected!")
 
     except Exception as e:
+        # when an exception is thrown, it is documented with a screenshot
         os.makedirs("screenshots", exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         driver.save_screenshot(f"screenshots/test_login_invalid_fail_{timestamp}.png")
